@@ -7,10 +7,6 @@ Le serveur public sera à l'écoute du port 6800.<br />
 Pour démarrer le serveur coté admin, taper "node app" dans ../GrandPrix/admin .<br />
 Le serveur public sera à l'écoute du port 6900.<br />
 
-Pour vous connectez en tant qu'administrateur :
-  Login : admin
-  Mot de passe : TakeTheLongWayHome
-
 <b> ⊂(◉‿◉)つ <b><br />
 
 ps : ¯\\_(ツ)_/¯ normalement tout marche ¯\\_(ツ)_/¯ <br />
