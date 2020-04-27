@@ -1,0 +1,30 @@
+<div id="info">
+  {{#each circuit}}
+    <div>
+      <img src="/image/circuit/{{this.CIRADRESSEIMAGE}}" alt="carte du circuit" width="320px" height="320px"/>
+    </div>
+    <div>
+      <p><b>Nom :</b> {{this.CIRNOM}}</p>
+      <p><b>Longueur :</b> {{this.CIRLONGUEUR}}</p>
+      <p><b>Nombre de sprectateurs :</b> {{this.CIRNBSPECTATEURS}}</p>
+      <p><b>Pays :</b> {{this.PAYNOM}}</p>
+    </div>
+  {{/each}}
+
+  <div>
+    <table class="tabCir">
+     {{#each listePays}}
+      <tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" width="32px" height="32px" />
+        <a href="/circuits/detailCircuit/{{this.CIRNUM}}"> {{this.CIRNOM}}</a>
+      </td></tr>
+    {{/each}}
+    </table>
+    <br class="myboth" />
+  </div>
+
+  <div>
+    {{#each circuit}}
+      <p>{{this.CIRTEXT}}</p>
+    {{/each}}
+  </div>
+</div>

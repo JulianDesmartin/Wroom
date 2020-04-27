@@ -1,0 +1,83 @@
+
+<div id="lettre">
+<p>Cliquez sur une lettre :
+  {{#each listeLettre}}
+  <a href="/repertoirePiloteDet/{{this.lettre}}">
+  {{this.lettre}}
+  </a> &nbsp;
+  {{/each}}
+  {{#each listePilote}}
+  <a href="/repertoirePiloteDet/{{this.lettre}}">
+  {{this.lettre}}
+  </a> &nbsp;
+  {{/each}}
+</p>
+</div>
+
+<table class="pilote">
+		<tr>
+      {{#each data}}
+        <td>
+          <a href="/repertoirePiloteDet/repertoireDetail/{{this.PILNUM}}"><img src="/image/pilote/{{this.PHOADRESSE}}" ></a>
+        </td>
+      {{/each}}
+    </tr>
+    <tr>
+      {{#each data}}
+      <td>
+        <p> {{this.PILNOM}}</p>
+      </td>
+      {{/each}}
+    </tr>
+    <tr>
+      {{#each data}}
+      <td>
+        <p> {{this.PILPRENOM}}</p>
+      </td>
+      {{/each}}
+    </tr>
+</table>
+
+{{#if piloteDet}}
+<div id="piloteDiv">
+  <div id="photoDiv">
+    <img src="/image/pilote/{{piloteDet.PHOADRESSE}}" >
+  </div>
+  <div>
+    <p> <b>Nom :</b> {{piloteDet.PILNOM}} {{piloteDet.PILPRENOM}}</p>
+    <p> <b>Date de naissance :</b> {{piloteDet.PILDATENAIS}}</p>
+    <p> <b>Poids :</b> {{piloteDet.PILPOIDS}} Kg</p>
+    <p> <b>Nationalité :</b> {{piloteDet.PAYNOM}}</p>
+    <p> <b>Taille :</b> {{piloteDet.PILTAILLE}} Cm</p>
+
+    {{#if piloteDet.ECUNOM}}
+      <p> <b>Ecurie :</b> {{piloteDet.ECUNOM}}</p>
+    {{else}}
+      <p> <b>Ecurie :</b> Pas d'écurie cette année</p>
+    {{/if}}
+
+  </div>
+</div>
+
+    {{#if piloteDet.SPONOM}}
+      <p> <b>Principaux sponsors :</b> </p>
+      {{#each sponsor}}
+        <p><b>{{this.SPONOM}}</b>({{this.SPOSECTACTIVITE}}) </p>
+      {{/each}}
+    {{/if}}
+
+<p> <b>Qui suis je ? :</b> {{piloteDet.PILTEXTE}}</p>
+
+<div id="photo">
+{{#each photo}}
+  <div>
+  <a href="/image/pilote/{{this.PHOADRESSE}}" data-lightbox="photo" data-title="{{this.PHOSUJET}}<br>{{this.PHOCOMMENTAIRE}}">
+    <img src="/image/pilote/{{this.PHOADRESSE}}" width="120" height="120">
+  </a>
+  </div>
+{{/each}}
+</div>
+
+{{else}}
+
+{{/if}}

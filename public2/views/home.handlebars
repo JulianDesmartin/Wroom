@@ -1,0 +1,8 @@
+{{#each dernierResultat}}
+  <div id="result">
+    <h1><u>DERNIER RESULTATS</u></h1>
+    <p><b>{{this.GPNOM}} du {{this.GPDATE}}</b></p>
+    <p>Mise à jour le : {{this.GPDATE}}</p>
+    <a href="resultats/detailResult/{{this.GPNUM}}">Voir les résultats</a>
+  </div>
+{{/each}}

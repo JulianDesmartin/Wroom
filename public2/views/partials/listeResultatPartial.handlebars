@@ -1,0 +1,42 @@
+<div id="info">
+	<div>
+		{{#if infoSup}}
+
+		  <p><b>{{infoSup.GPNOM}}({{infoSup.GPDATE}})</b></p>
+
+		  <table class="resultTab">
+		    <tr>
+		      <th><b>Place</b></th>
+		      <th><b>Pilote</b></th>
+		      <th><b>Temps</b></th>
+		      <th><b>Nb points</b></th>
+		    </tr>
+		    {{#each tabResult}}
+		    <tr>
+		      <th>{{inc @index}}</th>
+		      <th>{{this.PILNOM}} {{this.PILPRENOM}}</th>
+		      <th>{{this.TEMPSCOURSE}}</th>
+		      <th>{{this.PILPOINTS}}</th>
+		    </tr>
+		    {{/each}}
+		  </table>
+		{{/if}}
+	</div>
+
+	<div>
+		<table class="tabpayscir">
+			 {{#each listeResultat}}
+				<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" width="32px" height="32px"/>
+		      <a href="/resultats/detailResult/{{this.gpnum}}"> {{this.gpnom}}</a>
+		    </td></tr>
+		 {{/each}}
+		</table>
+		<br class="myboth" />
+	</div>
+</div>
+
+{{#if infoSup}}
+  <p>{{infoSup.GPCOMMENTAIRE}}</p>
+{{else}}
+
+{{/if}}

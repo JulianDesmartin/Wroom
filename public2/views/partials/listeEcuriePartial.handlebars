@@ -1,0 +1,77 @@
+<div id="info">
+
+	<div>
+		{{#if ecurieDet}}
+		  <img src="/image/ecurie/{{ecurieDet.ECUADRESSEIMAGE}}" alt="logo ecurie" id="ecur" />
+	</div>
+
+	<div>
+		  <p><b>Nom : </b> {{ecurieDet.ECUNOM}}</P>
+		  <p><b>Directeur : </b> {{ecurieDet.ECUNOMDIR}}</P>
+		  <p><b>Adresse : </b> {{ecurieDet.ECUADRSIEGE}}</P>
+		  <p><b>Pays : </b> {{ecurieDet.PAYNOM}}</P>
+		  {{#if ecurieDet.FPNOM}}
+		    <p><b>Fournisseur de pneumatique : </b> {{ecurieDet.FPNOM}}</P>
+		  {{/if}}
+		{{/if}}
+	</div>
+
+	<div>
+		<table class="tabpayscir">
+			 {{#each listeEcurie}}
+				<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
+		      <a href="/ecuries/detailEcurie/{{this.ecunum}}"> {{this.ecunom}}</a>
+		    </td></tr>
+		 {{/each}}
+		</table>
+		<br class="myboth" />
+	</div>
+
+	<div id="widthpil">
+		{{#if ecurieDet}}
+		  {{#if pilote}}
+		  <p><b>Pilotes : </b></P>
+		  {{#each pilote}}
+				<div class="tooltip">
+					<a href="/repertoirePiloteDet/repertoireDetail/{{this.PILNUM}}">
+			      <p>{{this.PILPRENOM}} {{this.PILNOM}}</p>
+					</a>
+					<span class="tooltiptext">
+						<img src="/image/pilote/{{this.PHOADRESSE}}" width="100px">
+						<p><b>{{this.PILNOM}} {{this.PILPRENOM}}</b></p>
+						<p>{{this.PILTEXTE}} ...</p>
+					</span>
+				</div>
+		  {{/each}}
+	</div>
+	<div id="vehic">
+		<table>
+			<tr>
+			  {{#each vehicule}}
+					<td>
+				    <img src="/image/ecurie/voiture/{{this.VOIADRESSEIMAGE}}" alt="Vehicule" width="200px" height="200px"/>
+					</td>
+			  {{/each}}
+			</tr>
+			<tr>
+				{{#each vehicule}}
+					<td>
+						<p>{{this.VOINOM}}</p>
+					</td>
+				{{/each}}
+			</tr>
+			<tr>
+				{{#each vehicule}}
+					<td>
+						<p>{{this.TYPELIBELLE}}</p>
+					</td>
+				{{/each}}
+			</tr>
+		</table>
+		  {{else}}
+		    <p>Cette écurie ne participe pas au championnat cette année</p>
+		  {{/if}}
+		{{/if}}
+	</div>
+
+</div>
