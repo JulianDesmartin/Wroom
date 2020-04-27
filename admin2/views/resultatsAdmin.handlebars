@@ -1,0 +1,68 @@
+<div id="conteneur">
+{{#if listeResultat}}
+
+  <img src="/image/cat_resultat.png" alt="coupe">
+  <h1>Resultats</h1>
+
+  <br />
+  <br />
+
+  <form action="/resultatsAdmin/resultatSaisie" method="post">
+    <label>Selectionner un  grand prix : </label><br>
+    <select name="gp" required>
+      {{#each listeResultat}}
+        <option value="{{this.GPNUM}}">{{this.GPNOM}}</option>
+      {{/each}}
+    </select><br>
+    <input type="submit" value="Valider">
+  </form>
+
+{{else if result}}
+
+  <h1>Saisie des résultats </h1>
+
+  <table id="tabAdmin">
+    <tr>
+      <th></th>
+      <th>Place</th>
+      <th>Pilote</th>
+      <th>Temps</th>
+      <th>Points</th>
+    </tr>
+    {{#each result}}
+    <tr>
+      <td><a href="/resultatsAdmin/supprimerScore/{{this.GPNUM}}/{{this.PILNUM}}"><img src="/image/act_delete.png" alt="supprimer"></a></td>
+      <td>{{inc @index}}</td>
+      <td>{{this.PILNOM}}</td>
+      <td>{{this.TEMPSCOURSE}}</td>
+      {{#if this.score.PTNBPOINTSPLACE}}
+        <td>{{this.score.PTNBPOINTSPLACE}}</td>
+      {{/if}}
+    </tr>
+    {{/each}}
+    <tr>
+      <td></td>
+      <td>{{inc @index}}</td>
+      <td>
+        <form action="/resultatsAdmin/scoreAjouter" method="post">
+          <select name="pilote">
+            {{#each pilote}}
+              <option value="{{this.PILNUM}}">{{this.PILNOM}}</option>
+            {{/each}}
+          </select>
+        </td>
+        <td>
+          <input type="number" id="minute" name="minute" min="0" max="60" required> :
+          <input type="number" id="seconde" name="seconde" min="0" max="60" required> :
+          <input type="number" id="mili" name="milli" min="0" max="100" required>
+        </td>
+        <input type="hidden" name="GP" id="GP" value="{{gpnum.GPNUM}}">
+        <td><input type="submit" value="OK"></td>
+      </form>
+    </tr>
+  </table>
+
+{{else}}
+  <a href="/resultatsAdmin"> Action effectué ! retour à la liste des résultas.</a>
+{{/if}}
+</div>

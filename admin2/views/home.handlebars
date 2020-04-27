@@ -1,0 +1,18 @@
+<div id="connexion">
+
+  {{#if session.connecter}}
+    <a href="/pilotesAdmin">Vous etes bien connecté! Aller à l'accueil.</a>
+  {{else if entraindeseconecter}}
+
+    <h1>Administration</h1>
+
+    <form action="/accueil/connexion" method="post">
+      <label>Login :</label> <input type="text" id="login" name="login">
+      <label>Mot de passe :</label> <input type="password" id="password" name="password">
+      <input type="reset" value="Annuler"> <input type="submit" value="Connexion">
+    </form>
+  {{else if erreur}}
+    <a href="/accueil">Mauvais login ou password !</a>
+  {{/if}}
+
+</div>

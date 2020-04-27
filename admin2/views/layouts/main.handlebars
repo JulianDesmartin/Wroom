@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<title> {{title}}</title>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/x-icon" href="/image/favicon.png" />
+
+	<link rel="stylesheet" href="/css/structure.css" />
+
+</head>
+
+<body class="monBody">
+<div id="container">
+	<div id="header">
+	<img src="/image/staff_admin.jpg" alt="WROOM l'encyclopédie de la F1" />
+	</div>
+	<div id="menu">
+		<a href="/pilotesAdmin">PILOTES</a> |
+		<a href="/circuitsAdmin">CIRCUITS</a> |
+		<a href="/ecuriesAdmin">ECURIES</a> |
+		<a href="/resultatsAdmin">RESULTATS</a> |
+		<a href="/sponsorsAdmin">SPONSORS</a> |
+		<a href="http://localhost:6800/accueil">Retour au site</a>
+	</div>
+	<div id="contenu">
+		<br/>
+		<br/>
+
+		{{#if session.connecter}}
+			{{{body}}}
+		{{else if entraindeseconecter}}
+			{{{body}}}
+		{{else if erreur}}
+			{{{body}}}
+		{{else}}
+			<p>Vous n'avez pas les droits nécessaires pour être ici !</p>
+			<a href="/accueil">Voulez-vous vous connectez ?</a>
+		{{/if}}
+
+	</div>
+				<div id="footer">
+					L'encyclopédie de la F1 depuis janvier 2020 (en NodeJS)
+					<br />
+					© IUT du Limousin DUT Informatique année 2
+					<br />
+					<br />
+                Appllication réalisée par DESMARTIN Julian
+					<img src="/image/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
+			</div>
+
+</div>
+</body>
+</html>

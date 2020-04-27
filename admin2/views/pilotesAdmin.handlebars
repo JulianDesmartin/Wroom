@@ -1,0 +1,91 @@
+<div id="conteneur">
+{{#if listePilote}}
+
+  <img src="/image/cat_pilote.png" alt="casque">
+  <h1>Gestion des Pilotes</h1>
+
+  <a href="/pilotesAdmin/ajouterPilote"><img src="/image/act_add.png" alt="ajouter"> Ajouter un pilote </a>
+  <br />
+  <br />
+
+  <table id="tabAdmin">
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Date de naissance</th>
+      <th>Actions</th>
+    </tr>
+    {{#each listePilote}}
+    <tr>
+      <td>{{this.PILNOM}}</td>
+      <td>{{this.PILPRENOM}}</td>
+      <td>{{this.PILDATENAIS}}</td>
+      <td><a href="/pilotesAdmin/modifierPilote/{{this.PILNUM}}"><img src="/image/act_edit.png" alt="modifier"> Modifier</a> <a href="/pilotesAdmin/supprimerPilote/{{this.PILNUM}}"><img src="/image/act_delete.png" alt="supprimer"> Supprimer</a></td>
+    </tr>
+    {{/each}}
+  </table>
+
+{{else if listePays}}
+
+  <h1>Ajouter un pilote</h1>
+
+  <form action="/pilotesAdmin/piloteAjouter/" method="post">
+    <label>Prénom</label><input type="text" id="pre" name="pre" required><br>
+    <label>Nom</label><input type="text" id="nom" name="nom" required><br>
+    <label>Date de naissance</label>
+        <input type="number" id="jour" name="jour" min="0" max="31" required> /
+        <input type="number" id="mois" name="mois" min="0" max="12" required> /
+        <input type="number" id="année" name="année" min="1900" required><br>
+    <label>Nationalité</label>
+    <select name="pays" required>
+      {{#each listePays}}
+        <option value="{{this.PAYNUM}}">{{this.PAYNOM}}</option>
+      {{/each}}
+    </select><br>
+    <label>Ecurie</label>
+    <select name="ecurie" required>
+      {{#each listeEcurie}}
+        <option value="{{this.ECUNUM}}">{{this.ECUNOM}}</option>
+      {{/each}}
+    </select><br>
+    <label>Points</label><input type="number" id="point" name="point" min="0" required> pts<br>
+    <label>Poids</label><input type="number" id="poid" name="poid" min="0" required> kg<br>
+    <label>Taille</label><input type="number" id="taille" name="taille" min="0" required> cm<br>
+    <label>Description</label><textarea id="descrip" name="descrip" required></textarea><br>
+    <input type="submit" value="Ajouter">
+  </form>
+
+{{else if detailPil}}
+  <h1>Modifier un pilote </h1>
+
+  <form action="/pilotesAdmin/piloteModifier" method="post">
+    <label>Prénom</label><input type="text" id="pre" name="pre" value="{{detailPil.PILPRENOM}}" required><br>
+    <label>Nom</label><input type="text" id="nom" name="nom" value="{{detailPil.PILNOM}}" required><br>
+
+    <label>Date de naissance</label>
+        <input type="number" id="jour" name="jour" min="0" max="31" value="{{jour}}" required> /
+        <input type="number" id="mois" name="mois" min="0" max="12" value="{{mois}}" required> /
+        <input type="number" id="année" name="année" min="1900" value="{{année}}" required><br>
+    <label>Nationalité</label>
+    <select name="pays">
+      {{#each listePays2}}
+        <option value="{{this.PAYNUM}}" {{#ifCond this.PAYNUM "==" ../detailPil.PAYNUM}} selected {{/ifCond}}>{{this.PAYNOM}}</option>
+      {{/each}}
+    </select><br>
+    <label>Ecurie</label>
+    <select name="ecurie" >
+      {{#each listeEcurie2}}
+        <option value="{{this.ECUNUM}}" {{#ifCond this.ECUNUM "==" ../detailPil.ECUNUM}} selected {{/ifCond}}>{{this.ECUNOM}}</option>
+      {{/each}}
+    </select><br>
+    <label>Points</label><input type="number" id="point" name="point" min="0" value="{{detailPil.PILPOINTS}}" required> pts<br>
+    <label>Poids</label><input type="number" id="poid" name="poid" min="0" value="{{detailPil.PILPOIDS}}" required> kg<br>
+    <label>Taille</label><input type="number" id="taille" name="taille" min="0" value="{{detailPil.PILTAILLE}}" required> cm<br>
+    <label>Description</label><textarea id="descrip" name="descrip" required>{{detailPil.PILTEXTE}}</textarea><br>
+    <input type="hidden" id="numpil" name="numpil" value="{{detailPil.PILNUM}}">
+    <input type="submit" value="Modifier">
+  </form>
+{{else}}
+  <a href="/pilotesAdmin"> Action effectué ! retour à la liste des pilotes.</a>
+{{/if}}
+</div>

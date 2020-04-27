@@ -1,0 +1,71 @@
+<div id="conteneur">
+{{#if listeCircuit}}
+
+  <img src="/image/cat_circuit.png" alt="drapeau">
+  <h1>Gestion des Circuits</h1>
+
+  <a href="/circuitsAdmin/ajouterCircuit"><img src="/image/act_add.png" alt="ajouter"> Ajouter un circuit </a>
+  <br />
+  <br />
+
+  <table id="tabAdmin">
+    <tr>
+      <th>Nom</th>
+      <th>Longueur</th>
+      <th>Nombre de spéctateurs</th>
+      <th>Actions</th>
+    </tr>
+    {{#each listeCircuit}}
+    <tr>
+      <td>{{this.CIRNOM}}</td>
+      <td>{{this.CIRLONGUEUR}}</td>
+      <td>{{this.CIRNBSPECTATEURS}}</td>
+      <td><a href="/circuitsAdmin/modifierCircuit/{{this.CIRNUM}}"><img src="/image/act_edit.png" alt="modifier"> Modifier</a> <a href="/circuitsAdmin/supprimerCircuit/{{this.CIRNUM}}"><img src="/image/act_delete.png" alt="supprimer"> Supprimer</a></td>
+    </tr>
+    {{/each}}
+  </table>
+
+{{else if listePays}}
+
+  <h1>Ajouter un circuit</h1>
+
+<form action="/circuitsAdmin/circuitAjouter/" method="post" enctype="multipart/form-data">
+  <label>Nom</label><input type="text" id="nom" name="nom" required><br>
+  <label>Longueur</label><input type="number" id="long" name="long" min="0" required> m <br>
+  <label>Pays</label>
+  <select name="pays" required>
+    {{#each listePays}}
+      <option value="{{this.PAYNUM}}">{{this.PAYNOM}}</option>
+    {{/each}}
+  </select><br>
+  <label>Image</label><input required type="file" id="image" name="image" > <br>
+  <label>Nombre de spectateur</label><input type="number" id="spec" name="spec" min="0" required> personnes<br>
+  <label>Description</label><textarea id="descrip" name="descrip" required></textarea><br>
+  <input type="submit" value="Ajouter">
+</form>
+
+{{else if detailCir}}
+
+  <h1>Modifier un circuit </h1>
+
+  <form action="/circuitsAdmin/circuitModifier"  enctype="multipart/form-data" method="post">
+    <label>Nom</label><input type="text" id="nom" name="nom" value="{{detailCir.CIRNOM}}" required><br>
+    <label>Longueur</label><input type="number" id="long" name="long" min="0" value="{{detailCir.CIRLONGUEUR}}" required> m<br>
+    <label>Pays</label>
+    <select name="pays">
+      {{#each listePays2}}
+        <option value="{{this.PAYNUM}}" {{#ifCond this.PAYNUM "==" ../detailCir.PAYNUM}} selected {{/ifCond}}>{{this.PAYNOM}}</option>
+      {{/each}}
+    </select><br>
+    <label>Image</label><input type="file" id="image" name="image" accept="image/png,image/jpeg" ><br>
+                        <input type="hidden" id="adrImage" name="adrImage" value="{{detailCir.CIRADRESSEIMAGE}}">
+    <label>Nombre de spectateurs</label><input type="number" id="spec" name="spec" min="0" value="{{detailCir.CIRNBSPECTATEURS}}" required> personnes<br>
+    <label>Description</label><textarea id="descrip" name="descrip" value="{{detailCir.CIRTEXT}}" required>{{detailCir.CIRTEXT}}</textarea><br>
+    <input type="hidden" id="numcir" name="numcir" value="{{detailCir.CIRNUM}}">
+    <input type="submit" value="Modifier">
+  </form>
+
+{{else}}
+  <a href="/circuitsAdmin"> Action effectué ! retour à la liste des circuits.</a>
+{{/if}}
+</div>
