@@ -1,5 +1,4 @@
 # W R O O M
-<<<<<<< HEAD
 =======
 Structure de l'application GrandPrix de l'IUT en Node.js.<br />
 
@@ -14,8 +13,6 @@ Pour vous connectez en tant qu'administrateur :
 
 <b> ⊂(◉‿◉)つ <b><br />
 
-ps : ¯\_(ツ)_/¯ normalement tout marche ¯\_(ツ)_/¯ <br />
+ps : ¯\\_(ツ)_/¯ normalement tout marche ¯\\_(ツ)_/¯ <br />
 ps2 : la page 404 est jolie <br />
 ps3 : je suis nul en css <br />
-
->>>>>>> 0675d1b7491153323286c259cdf27bdadf1253cd
